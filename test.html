@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+</head>
+<body>
+  <div id="invoice-form">
+    <h1>Invoice</h1>
+    <p>Customer: John Doe</p>
+    <p>Product: Example Product</p>
+    <p>Price: $100</p>
+  </div>
+
+  <button onclick="generatePDF()">Generate PDF</button>
+
+  <script>
+    window.jsPDF = window.jspdf.jsPDF;
+
+    function generatePDF() {
+      const pdf = new jsPDF();
+
+      const pdfFileName = 'invoice.pdf';
+
+      const element = document.getElementById('invoice-form');
+
+      html2canvas(element, { scale: 2, dpi: 300 })
+        .then(canvas => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+          pdf.save(pdfFileName);
+        });
+    }
+  </script>
+</body>
+</html>

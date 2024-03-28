@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="invoice-form">
+    <label for="code">Code:</label>
+    <input type="text" id="code" required>
+
+    <label for="article">Article / Désignation:</label>
+    <input type="text" id="article" required>
+
+    <label for="quantity">Qté:</label>
+    <input type="number" id="quantity" required>
+
+    <label for="unitPrice">P.U:</label>
+    <input type="number" id="unitPrice" required>
+
+    <label for="amount">Montant:</label>
+    <input type="text" id="amount" readonly>
+
+    <button class="add" onclick="addProduct()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+      </svg>
+    </button>
+    <button onclick="calculateAmount()">Create Invoice</button>
+    <button onclick="generateRecu()">RECU</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
